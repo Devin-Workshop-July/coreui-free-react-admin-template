@@ -22,7 +22,7 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons">
               {['normal', 'active', 'disabled'].map((state, index) => (
-                <CRow className="align-items-center mb-3" key={index}>
+                <CRow className="align-items-center mb-3" key={state}>
                   <CCol xs={12} xl={2} className="mb-3 mb-xl-0">
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
@@ -39,7 +39,7 @@ const Buttons = () => {
                     ].map((color, index) => (
                       <CButton
                         color={color}
-                        key={index}
+                        key={color}
                         active={state === 'active'}
                         disabled={state === 'disabled'}
                       >
@@ -65,7 +65,7 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons">
               {['normal', 'active', 'disabled'].map((state, index) => (
-                <CRow className="align-items-center mb-3" key={index}>
+                <CRow className="align-items-center mb-3" key={state}>
                   <CCol xs={12} xl={2} className="mb-3 mb-xl-0">
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
@@ -82,7 +82,7 @@ const Buttons = () => {
                     ].map((color, index) => (
                       <CButton
                         color={color}
-                        key={index}
+                        key={color}
                         active={state === 'active'}
                         disabled={state === 'disabled'}
                       >
@@ -144,7 +144,7 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#outline-buttons">
               {['normal', 'active', 'disabled'].map((state, index) => (
-                <CRow className="align-items-center mb-3" key={index}>
+                <CRow className="align-items-center mb-3" key={state}>
                   <CCol xs={12} xl={2} className="mb-3 mb-xl-0">
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
@@ -162,7 +162,7 @@ const Buttons = () => {
                       <CButton
                         color={color}
                         variant="outline"
-                        key={index}
+                        key={color}
                         active={state === 'active'}
                         disabled={state === 'disabled'}
                       >
@@ -188,7 +188,7 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#ghost-buttons">
               {['normal', 'active', 'disabled'].map((state, index) => (
-                <CRow className="align-items-center mb-3" key={index}>
+                <CRow className="align-items-center mb-3" key={state}>
                   <CCol xs={12} xl={2} className="mb-3 mb-xl-0">
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
@@ -206,7 +206,7 @@ const Buttons = () => {
                       <CButton
                         color={color}
                         variant="ghost"
-                        key={index}
+                        key={color}
                         active={state === 'active'}
                         disabled={state === 'disabled'}
                       >
@@ -266,7 +266,7 @@ const Buttons = () => {
                 'light',
                 'dark',
               ].map((color, index) => (
-                <CButton color={color} shape="rounded-pill" key={index}>
+                <CButton color={color} shape="rounded-pill" key={color}>
                   {color.charAt(0).toUpperCase() + color.slice(1)}
                 </CButton>
               ))}
@@ -291,7 +291,7 @@ const Buttons = () => {
                 'light',
                 'dark',
               ].map((color, index) => (
-                <CButton color={color} shape="rounded-0" key={index}>
+                <CButton color={color} shape="rounded-0" key={color}>
                   {color.charAt(0).toUpperCase() + color.slice(1)}
                 </CButton>
               ))}

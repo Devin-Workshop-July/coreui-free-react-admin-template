@@ -156,7 +156,11 @@ const ListGroups = () => {
             </p>
             <DocsExample href="components/list-group/#flush">
               {['', '-sm', '-md', '-lg', '-xl', '-xxl'].map((breakpoint, index) => (
-                <CListGroup className="mb-2" layout={`horizontal${breakpoint}`} key={index}>
+                <CListGroup
+                  className="mb-2"
+                  layout={`horizontal${breakpoint}`}
+                  key={`horizontal${breakpoint}`}
+                >
                   <CListGroupItem>Cras justo odio</CListGroupItem>
                   <CListGroupItem>Dapibus ac facilisis in</CListGroupItem>
                   <CListGroupItem>Morbi leo risus</CListGroupItem>
@@ -188,7 +192,7 @@ const ListGroups = () => {
                   'light',
                   'dark',
                 ].map((color, index) => (
-                  <CListGroupItem color={color} key={index}>
+                  <CListGroupItem color={color} key={color}>
                     A simple {color} list group item
                   </CListGroupItem>
                 ))}
@@ -215,7 +219,7 @@ const ListGroups = () => {
                   'light',
                   'dark',
                 ].map((color, index) => (
-                  <CListGroupItem as="a" href="#" color={color} key={index}>
+                  <CListGroupItem as="a" href="#" color={color} key={`link-${color}`}>
                     A simple {color} list group item
                   </CListGroupItem>
                 ))}
