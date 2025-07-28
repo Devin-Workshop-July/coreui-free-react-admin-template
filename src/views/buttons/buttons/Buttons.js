@@ -1,5 +1,6 @@
 import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
+import { Button } from '@mui/material'
 import CIcon from '@coreui/icons-react'
 import { cilBell } from '@coreui/icons'
 import { DocsComponents, DocsExample } from 'src/components'
@@ -31,22 +32,21 @@ const Buttons = () => {
                       'primary',
                       'secondary',
                       'success',
-                      'danger',
+                      'error',
                       'warning',
                       'info',
-                      'light',
-                      'dark',
                     ].map((color, index) => (
-                      <CButton
+                      <Button
                         color={color}
                         key={index}
-                        active={state === 'active'}
+                        variant={state === 'active' ? 'contained' : 'contained'}
                         disabled={state === 'disabled'}
+                        sx={{ mr: 1, mb: 1 }}
                       >
                         {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </CButton>
+                      </Button>
                     ))}
-                    <CButton color="link">Link</CButton>
+                    <Button variant="text" sx={{ mr: 1, mb: 1 }}>Link</Button>
                   </CCol>
                 </CRow>
               ))}
@@ -74,26 +74,24 @@ const Buttons = () => {
                       'primary',
                       'secondary',
                       'success',
-                      'danger',
+                      'error',
                       'warning',
                       'info',
-                      'light',
-                      'dark',
                     ].map((color, index) => (
-                      <CButton
+                      <Button
                         color={color}
                         key={index}
-                        active={state === 'active'}
+                        variant={state === 'active' ? 'contained' : 'contained'}
                         disabled={state === 'disabled'}
+                        sx={{ mr: 1, mb: 1 }}
+                        startIcon={<CIcon icon={cilBell} />}
                       >
-                        <CIcon icon={cilBell} className="me-2" />
                         {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </CButton>
+                      </Button>
                     ))}
-                    <CButton color="link">
-                      <CIcon icon={cilBell} className="me-2" />
+                    <Button variant="text" sx={{ mr: 1, mb: 1 }} startIcon={<CIcon icon={cilBell} />}>
                       Link
-                    </CButton>
+                    </Button>
                   </CCol>
                 </CRow>
               ))}
@@ -119,15 +117,15 @@ const Buttons = () => {
               meaning to assistive technologies such as screen readers.
             </p>
             <DocsExample href="components/buttons#button-components">
-              <CButton as="a" color="primary" href="#" role="button">
+              <Button component="a" color="primary" href="#" role="button" sx={{ mr: 1, mb: 1 }}>
                 Link
-              </CButton>
-              <CButton type="submit" color="primary">
+              </Button>
+              <Button type="submit" color="primary" sx={{ mr: 1, mb: 1 }}>
                 Button
-              </CButton>
-              <CButton as="input" type="button" color="primary" value="Input" />
-              <CButton as="input" type="submit" color="primary" value="Submit" />
-              <CButton as="input" type="reset" color="primary" value="Reset" />
+              </Button>
+              <input type="button" value="Input" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
+              <input type="submit" value="Submit" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
+              <input type="reset" value="Reset" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -153,21 +151,19 @@ const Buttons = () => {
                       'primary',
                       'secondary',
                       'success',
-                      'danger',
+                      'error',
                       'warning',
                       'info',
-                      'light',
-                      'dark',
                     ].map((color, index) => (
-                      <CButton
+                      <Button
                         color={color}
-                        variant="outline"
+                        variant="outlined"
                         key={index}
-                        active={state === 'active'}
                         disabled={state === 'disabled'}
+                        sx={{ mr: 1, mb: 1 }}
                       >
                         {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </CButton>
+                      </Button>
                     ))}
                   </CCol>
                 </CRow>
@@ -197,21 +193,19 @@ const Buttons = () => {
                       'primary',
                       'secondary',
                       'success',
-                      'danger',
+                      'error',
                       'warning',
                       'info',
-                      'light',
-                      'dark',
                     ].map((color, index) => (
-                      <CButton
+                      <Button
                         color={color}
-                        variant="ghost"
+                        variant="text"
                         key={index}
-                        active={state === 'active'}
                         disabled={state === 'disabled'}
+                        sx={{ mr: 1, mb: 1 }}
                       >
                         {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </CButton>
+                      </Button>
                     ))}
                   </CCol>
                 </CRow>
@@ -231,20 +225,20 @@ const Buttons = () => {
               <code>size=&#34;sm&#34;</code> for additional sizes.
             </p>
             <DocsExample href="components/buttons#sizes">
-              <CButton color="primary" size="lg">
+              <Button color="primary" size="large" sx={{ mr: 1, mb: 1 }}>
                 Large button
-              </CButton>
-              <CButton color="secondary" size="lg">
+              </Button>
+              <Button color="secondary" size="large" sx={{ mr: 1, mb: 1 }}>
                 Large button
-              </CButton>
+              </Button>
             </DocsExample>
             <DocsExample href="components/buttons#sizes">
-              <CButton color="primary" size="sm">
+              <Button color="primary" size="small" sx={{ mr: 1, mb: 1 }}>
                 Small button
-              </CButton>
-              <CButton color="secondary" size="sm">
+              </Button>
+              <Button color="secondary" size="small" sx={{ mr: 1, mb: 1 }}>
                 Small button
-              </CButton>
+              </Button>
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -260,15 +254,13 @@ const Buttons = () => {
                 'primary',
                 'secondary',
                 'success',
-                'danger',
+                'error',
                 'warning',
                 'info',
-                'light',
-                'dark',
               ].map((color, index) => (
-                <CButton color={color} shape="rounded-pill" key={index}>
+                <Button color={color} sx={{ borderRadius: '50px', mr: 1, mb: 1 }} key={index}>
                   {color.charAt(0).toUpperCase() + color.slice(1)}
-                </CButton>
+                </Button>
               ))}
             </DocsExample>
           </CCardBody>
@@ -285,15 +277,13 @@ const Buttons = () => {
                 'primary',
                 'secondary',
                 'success',
-                'danger',
+                'error',
                 'warning',
                 'info',
-                'light',
-                'dark',
               ].map((color, index) => (
-                <CButton color={color} shape="rounded-0" key={index}>
+                <Button color={color} sx={{ borderRadius: 0, mr: 1, mb: 1 }} key={index}>
                   {color.charAt(0).toUpperCase() + color.slice(1)}
-                </CButton>
+                </Button>
               ))}
             </DocsExample>
           </CCardBody>
@@ -312,12 +302,12 @@ const Buttons = () => {
               triggering.
             </p>
             <DocsExample href="components/buttons#disabled-state">
-              <CButton color="primary" size="lg" disabled>
+              <Button color="primary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
                 Primary button
-              </CButton>
-              <CButton color="secondary" size="lg" disabled>
+              </Button>
+              <Button color="secondary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
                 Button
-              </CButton>
+              </Button>
             </DocsExample>
             <p className="text-body-secondary small">
               Disabled buttons using the <code>&lt;a&gt;</code> component act a little different:
@@ -330,12 +320,12 @@ const Buttons = () => {
               to assistive technologies.
             </p>
             <DocsExample href="components/buttons#disabled-state">
-              <CButton as="a" href="#" color="primary" size="lg" disabled>
+              <Button component="a" href="#" color="primary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
                 Primary link
-              </CButton>
-              <CButton as="a" href="#" color="secondary" size="lg" disabled>
+              </Button>
+              <Button component="a" href="#" color="secondary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
                 Link
-              </CButton>
+              </Button>
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -351,8 +341,8 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2">
-                <CButton color="primary">Button</CButton>
-                <CButton color="primary">Button</CButton>
+                <Button color="primary" fullWidth>Button</Button>
+                <Button color="primary" fullWidth>Button</Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
@@ -363,8 +353,8 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2 d-md-block">
-                <CButton color="primary">Button</CButton>
-                <CButton color="primary">Button</CButton>
+                <Button color="primary" sx={{ mr: 1, mb: 1 }}>Button</Button>
+                <Button color="primary" sx={{ mr: 1, mb: 1 }}>Button</Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
@@ -374,8 +364,8 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2 col-6 mx-auto">
-                <CButton color="primary">Button</CButton>
-                <CButton color="primary">Button</CButton>
+                <Button color="primary" fullWidth>Button</Button>
+                <Button color="primary" fullWidth>Button</Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
@@ -386,10 +376,10 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <CButton color="primary" className="me-md-2">
+                <Button color="primary" className="me-md-2">
                   Button
-                </CButton>
-                <CButton color="primary">Button</CButton>
+                </Button>
+                <Button color="primary">Button</Button>
               </div>
             </DocsExample>
           </CCardBody>
