@@ -25,7 +25,7 @@ import {
   cilSun,
 } from '@coreui/icons'
 
-import { AppBreadcrumb } from './index'
+import AppBreadcrumb from './AppBreadcrumb'
 import { AppHeaderDropdown } from './header/index'
 
 const AppHeader = () => {
