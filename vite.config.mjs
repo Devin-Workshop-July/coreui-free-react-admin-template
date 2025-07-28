@@ -40,7 +40,9 @@ export default defineConfig(() => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.scss'],
     },
     server: {
+      host: '0.0.0.0',
       port: 3000,
+      allowedHosts: ['teams-chat-review-app-tunnel-lxt75ud3.devinapps.com'],
       proxy: {
         // https://vitejs.dev/config/server-options.html
       },
