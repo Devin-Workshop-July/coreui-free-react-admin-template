@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import {
   CCard,
   CCardBody,
@@ -14,6 +15,7 @@ import {
   CAlert,
   CFormFeedback,
   CBadge,
+  CFormCheck,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilArrowLeft, cilSend } from '@coreui/icons'
@@ -26,10 +28,18 @@ const AskQuestion = () => {
     priority: 'medium',
     tags: '',
     reviewerGroup: '',
+    createJiraTicket: false,
+    jiraServerUrl: '',
+    jiraProjectKey: '',
+    jiraIssueType: 'Task',
+    jiraApiToken: '',
   })
 
   const [validated, setValidated] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [showError, setShowError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const categories = [
@@ -59,10 +69,10 @@ const AskQuestion = () => {
   ]
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }))
   }
 
@@ -77,11 +87,27 @@ const AskQuestion = () => {
     }
 
     setIsSubmitting(true)
+    let jiraTicket = null
     
     try {
+      if (formData.createJiraTicket) {
+        try {
+          jiraTicket = await createJiraTicket(formData)
+        } catch (jiraError) {
+          setShowError(true)
+          setErrorMessage('Question submitted successfully, but JIRA ticket creation failed. Please create the ticket manually.')
+        }
+      }
+      
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       setShowSuccess(true)
+      setSuccessMessage(
+        jiraTicket 
+          ? `Question submitted successfully! JIRA ticket ${jiraTicket.key} has been created.`
+          : 'Question submitted successfully!'
+      )
+      
       setFormData({
         title: '',
         description: '',
@@ -89,16 +115,76 @@ const AskQuestion = () => {
         priority: 'medium',
         tags: '',
         reviewerGroup: '',
+        createJiraTicket: false,
+        jiraServerUrl: '',
+        jiraProjectKey: '',
+        jiraIssueType: 'Task',
+        jiraApiToken: '',
       })
       setValidated(false)
       
       setTimeout(() => {
         window.location.href = '#/qa/dashboard'
-      }, 2000)
+      }, 3000)
     } catch (error) {
       console.error('Error submitting question:', error)
+      setShowError(true)
+      setErrorMessage('Failed to submit question. Please try again.')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const createJiraTicket = async (questionData) => {
+    try {
+      const jiraPayload = {
+        fields: {
+          project: {
+            key: questionData.jiraProjectKey
+          },
+          summary: questionData.title,
+          description: {
+            type: "doc",
+            version: 1,
+            content: [
+              {
+                type: "paragraph",
+                content: [
+                  {
+                    type: "text",
+                    text: `Category: ${questionData.category}\nPriority: ${questionData.priority}\nReviewer Group: ${questionData.reviewerGroup}\nTags: ${questionData.tags}\n\nDescription:\n${questionData.description}`
+                  }
+                ]
+              }
+            ]
+          },
+          issuetype: {
+            name: questionData.jiraIssueType
+          },
+          priority: {
+            name: questionData.priority === 'urgent' ? 'Highest' : 
+                  questionData.priority === 'high' ? 'High' :
+                  questionData.priority === 'medium' ? 'Medium' : 'Low'
+          }
+        }
+      }
+
+      const response = await axios.post(
+        `${questionData.jiraServerUrl}/rest/api/3/issue`,
+        jiraPayload,
+        {
+          headers: {
+            'Authorization': `Basic ${btoa(`${questionData.jiraApiToken}:${questionData.jiraApiToken}`)}`,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      return response.data
+    } catch (error) {
+      console.error('JIRA ticket creation failed:', error)
+      throw error
     }
   }
 
@@ -124,10 +210,15 @@ const AskQuestion = () => {
       </CCol>
 
       <CCol xs={12}>
+        {showError && (
+          <CAlert color="danger" dismissible onClose={() => setShowError(false)}>
+            <strong>Error!</strong> {errorMessage}
+          </CAlert>
+        )}
+        
         {showSuccess && (
           <CAlert color="success" dismissible onClose={() => setShowSuccess(false)}>
-            <strong>Success!</strong> Your question has been submitted and assigned to the selected reviewer group. 
-            You'll receive notifications when reviewers respond. Redirecting to dashboard...
+            <strong>Success!</strong> {successMessage} Redirecting to dashboard...
           </CAlert>
         )}
 
@@ -254,6 +345,94 @@ const AskQuestion = () => {
                 <small className="text-body-secondary">
                   Be specific and include relevant context to help reviewers provide better answers.
                 </small>
+              </CCol>
+
+              <CCol xs={12}>
+                <CCard className="mt-4">
+                  <CCardHeader>
+                    <strong>JIRA Integration</strong>
+                    <small className="text-body-secondary ms-2">
+                      Automatically create JIRA tickets for your questions
+                    </small>
+                  </CCardHeader>
+                  <CCardBody>
+                    <CCol xs={12} className="mb-3">
+                      <CFormCheck
+                        id="createJiraTicket"
+                        name="createJiraTicket"
+                        checked={formData.createJiraTicket}
+                        onChange={handleInputChange}
+                        label="Create JIRA ticket when submitting question"
+                      />
+                    </CCol>
+                    
+                    {formData.createJiraTicket && (
+                      <>
+                        <CRow className="g-3">
+                          <CCol md={6}>
+                            <CFormLabel htmlFor="jiraServerUrl">JIRA Server URL *</CFormLabel>
+                            <CFormInput
+                              type="url"
+                              id="jiraServerUrl"
+                              name="jiraServerUrl"
+                              value={formData.jiraServerUrl}
+                              onChange={handleInputChange}
+                              placeholder="https://your-domain.atlassian.net"
+                              required={formData.createJiraTicket}
+                            />
+                            <CFormFeedback invalid>
+                              Please provide a valid JIRA server URL.
+                            </CFormFeedback>
+                          </CCol>
+                          <CCol md={6}>
+                            <CFormLabel htmlFor="jiraProjectKey">Project Key *</CFormLabel>
+                            <CFormInput
+                              type="text"
+                              id="jiraProjectKey"
+                              name="jiraProjectKey"
+                              value={formData.jiraProjectKey}
+                              onChange={handleInputChange}
+                              placeholder="PROJ"
+                              required={formData.createJiraTicket}
+                            />
+                            <CFormFeedback invalid>
+                              Please provide a JIRA project key.
+                            </CFormFeedback>
+                          </CCol>
+                          <CCol md={6}>
+                            <CFormLabel htmlFor="jiraIssueType">Issue Type</CFormLabel>
+                            <CFormSelect
+                              id="jiraIssueType"
+                              name="jiraIssueType"
+                              value={formData.jiraIssueType}
+                              onChange={handleInputChange}
+                            >
+                              <option value="Task">Task</option>
+                              <option value="Story">Story</option>
+                              <option value="Bug">Bug</option>
+                              <option value="Epic">Epic</option>
+                            </CFormSelect>
+                          </CCol>
+                          <CCol md={6}>
+                            <CFormLabel htmlFor="jiraApiToken">API Token *</CFormLabel>
+                            <CFormInput
+                              type="password"
+                              id="jiraApiToken"
+                              name="jiraApiToken"
+                              value={formData.jiraApiToken}
+                              onChange={handleInputChange}
+                              placeholder="Your JIRA API token"
+                              required={formData.createJiraTicket}
+                            />
+                            <CFormFeedback invalid>
+                              Please provide a JIRA API token.
+                            </CFormFeedback>
+                          </CCol>
+                        </CRow>
+                      </>
+                    )}
+                  </CCardBody>
+                </CCard>
               </CCol>
 
               <CCol xs={12}>
