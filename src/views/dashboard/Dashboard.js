@@ -258,8 +258,8 @@ const Dashboard = () => {
                     </CCol>
                   </CRow>
                   <hr className="mt-0" />
-                  {progressGroupExample1.map((item, index) => (
-                    <div className="progress-group mb-4" key={index}>
+                  {progressGroupExample1.map((item) => (
+                    <div className="progress-group mb-4" key={item.title}>
                       <div className="progress-group-prepend">
                         <span className="text-body-secondary small">{item.title}</span>
                       </div>
@@ -288,8 +288,8 @@ const Dashboard = () => {
 
                   <hr className="mt-0" />
 
-                  {progressGroupExample2.map((item, index) => (
-                    <div className="progress-group mb-4" key={index}>
+                  {progressGroupExample2.map((item) => (
+                    <div className="progress-group mb-4" key={item.title}>
                       <div className="progress-group-header">
                         <CIcon className="me-2" icon={item.icon} size="lg" />
                         <span>{item.title}</span>
@@ -303,8 +303,8 @@ const Dashboard = () => {
 
                   <div className="mb-5"></div>
 
-                  {progressGroupExample3.map((item, index) => (
-                    <div className="progress-group" key={index}>
+                  {progressGroupExample3.map((item) => (
+                    <div className="progress-group" key={item.title}>
                       <div className="progress-group-header">
                         <CIcon className="me-2" icon={item.icon} size="lg" />
                         <span>{item.title}</span>
@@ -341,8 +341,8 @@ const Dashboard = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {tableExample.map((item, index) => (
-                    <CTableRow v-for="item in tableItems" key={index}>
+                  {tableExample.map((item) => (
+                    <CTableRow v-for="item in tableItems" key={item.user.name}>
                       <CTableDataCell className="text-center">
                         <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
                       </CTableDataCell>
