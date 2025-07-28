@@ -51,6 +51,11 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+const QADashboard = React.lazy(() => import('./views/qa/QADashboard'))
+const AskQuestion = React.lazy(() => import('./views/qa/AskQuestion'))
+const QuestionDetail = React.lazy(() => import('./views/qa/QuestionDetail'))
+const ReviewQueue = React.lazy(() => import('./views/qa/ReviewQueue'))
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -97,6 +102,11 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', element: Modals },
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
+  { path: '/qa', name: 'Q&A System', element: QADashboard, exact: true },
+  { path: '/qa/dashboard', name: 'Q&A Dashboard', element: QADashboard },
+  { path: '/qa/ask', name: 'Ask Question', element: AskQuestion },
+  { path: '/qa/question/:id', name: 'Question Detail', element: QuestionDetail },
+  { path: '/qa/review', name: 'Review Queue', element: ReviewQueue },
 ]
 
 export default routes

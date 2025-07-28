@@ -13,6 +13,9 @@ import {
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilCommentSquare,
+  cilPlus,
+  cilList,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -408,6 +411,35 @@ const _nav = [
       color: 'info',
       text: 'NEW',
     },
+  },
+  {
+    component: CNavTitle,
+    name: 'Q&A System',
+  },
+  {
+    component: CNavGroup,
+    name: 'Questions & Answers',
+    to: '/qa',
+    icon: <CIcon icon={cilCommentSquare} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Dashboard',
+        to: '/qa/dashboard',
+      },
+      {
+        component: CNavItem,
+        name: 'Ask Question',
+        to: '/qa/ask',
+        icon: <CIcon icon={cilPlus} customClassName="nav-icon" />,
+      },
+      {
+        component: CNavItem,
+        name: 'Review Queue',
+        to: '/qa/review',
+        icon: <CIcon icon={cilList} customClassName="nav-icon" />,
+      },
+    ],
   },
   {
     component: CNavTitle,
