@@ -26,7 +26,7 @@ const MainChart = () => {
     })
   }, [chartRef])
 
-  const random = () => Math.round(Math.random() * 100)
+  const random = (min, max) => Math.round(Math.random() * (max - min) + min)
 
   return (
     <>
