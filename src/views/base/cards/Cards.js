@@ -584,8 +584,8 @@ const Cards = () => {
                   { color: 'info', textColor: 'white' },
                   { color: 'light' },
                   { color: 'dark', textColor: 'white' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
+                ].map((item) => (
+                  <CCol lg={4} key={item.color}>
                     <CCard color={item.color} textColor={item.textColor} className="mb-3">
                       <CCardHeader>Header</CCardHeader>
                       <CCardBody>
@@ -618,8 +618,8 @@ const Cards = () => {
                   { color: 'info', textColor: 'info' },
                   { color: 'light' },
                   { color: 'dark' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
+                ].map((item) => (
+                  <CCol lg={4} key={`border-${item.color}`}>
                     <CCard textColor={item.textColor} className={`mb-3 border-${item.color}`}>
                       <CCardHeader>Header</CCardHeader>
                       <CCardBody>
@@ -652,8 +652,8 @@ const Cards = () => {
                   { color: 'info', textColor: 'info' },
                   { color: 'light' },
                   { color: 'dark' },
-                ].map((item, index) => (
-                  <CCol lg={4} key={index}>
+                ].map((item) => (
+                  <CCol lg={4} key={`top-border-${item.color}`}>
                     <CCard
                       textColor={item.textColor}
                       className={`mb-3 border-top-${item.color} border-top-3`}
