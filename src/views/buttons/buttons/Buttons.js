@@ -28,25 +28,22 @@ const Buttons = () => {
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
                   <CCol xs>
-                    {[
-                      'primary',
-                      'secondary',
-                      'success',
-                      'error',
-                      'warning',
-                      'info',
-                    ].map((color, index) => (
-                      <Button
-                        color={color}
-                        key={index}
-                        variant={state === 'active' ? 'contained' : 'contained'}
-                        disabled={state === 'disabled'}
-                        sx={{ mr: 1, mb: 1 }}
-                      >
-                        {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </Button>
-                    ))}
-                    <Button variant="text" sx={{ mr: 1, mb: 1 }}>Link</Button>
+                    {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                      (color, index) => (
+                        <Button
+                          color={color}
+                          key={index}
+                          variant={state === 'active' ? 'contained' : 'contained'}
+                          disabled={state === 'disabled'}
+                          sx={{ mr: 1, mb: 1 }}
+                        >
+                          {color.charAt(0).toUpperCase() + color.slice(1)}
+                        </Button>
+                      ),
+                    )}
+                    <Button variant="text" sx={{ mr: 1, mb: 1 }}>
+                      Link
+                    </Button>
                   </CCol>
                 </CRow>
               ))}
@@ -70,26 +67,25 @@ const Buttons = () => {
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
                   <CCol xs>
-                    {[
-                      'primary',
-                      'secondary',
-                      'success',
-                      'error',
-                      'warning',
-                      'info',
-                    ].map((color, index) => (
-                      <Button
-                        color={color}
-                        key={index}
-                        variant={state === 'active' ? 'contained' : 'contained'}
-                        disabled={state === 'disabled'}
-                        sx={{ mr: 1, mb: 1 }}
-                        startIcon={<CIcon icon={cilBell} />}
-                      >
-                        {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </Button>
-                    ))}
-                    <Button variant="text" sx={{ mr: 1, mb: 1 }} startIcon={<CIcon icon={cilBell} />}>
+                    {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                      (color, index) => (
+                        <Button
+                          color={color}
+                          key={index}
+                          variant={state === 'active' ? 'contained' : 'contained'}
+                          disabled={state === 'disabled'}
+                          sx={{ mr: 1, mb: 1 }}
+                          startIcon={<CIcon icon={cilBell} />}
+                        >
+                          {color.charAt(0).toUpperCase() + color.slice(1)}
+                        </Button>
+                      ),
+                    )}
+                    <Button
+                      variant="text"
+                      sx={{ mr: 1, mb: 1 }}
+                      startIcon={<CIcon icon={cilBell} />}
+                    >
                       Link
                     </Button>
                   </CCol>
@@ -123,9 +119,48 @@ const Buttons = () => {
               <Button type="submit" color="primary" sx={{ mr: 1, mb: 1 }}>
                 Button
               </Button>
-              <input type="button" value="Input" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
-              <input type="submit" value="Submit" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
-              <input type="reset" value="Reset" style={{ marginRight: '8px', marginBottom: '8px', padding: '6px 16px', backgroundColor: '#1976d2', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }} />
+              <input
+                type="button"
+                value="Input"
+                style={{
+                  marginRight: '8px',
+                  marginBottom: '8px',
+                  padding: '6px 16px',
+                  backgroundColor: '#1976d2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                }}
+              />
+              <input
+                type="submit"
+                value="Submit"
+                style={{
+                  marginRight: '8px',
+                  marginBottom: '8px',
+                  padding: '6px 16px',
+                  backgroundColor: '#1976d2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                }}
+              />
+              <input
+                type="reset"
+                value="Reset"
+                style={{
+                  marginRight: '8px',
+                  marginBottom: '8px',
+                  padding: '6px 16px',
+                  backgroundColor: '#1976d2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                }}
+              />
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -147,24 +182,19 @@ const Buttons = () => {
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
                   <CCol xs>
-                    {[
-                      'primary',
-                      'secondary',
-                      'success',
-                      'error',
-                      'warning',
-                      'info',
-                    ].map((color, index) => (
-                      <Button
-                        color={color}
-                        variant="outlined"
-                        key={index}
-                        disabled={state === 'disabled'}
-                        sx={{ mr: 1, mb: 1 }}
-                      >
-                        {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </Button>
-                    ))}
+                    {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                      (color, index) => (
+                        <Button
+                          color={color}
+                          variant="outlined"
+                          key={index}
+                          disabled={state === 'disabled'}
+                          sx={{ mr: 1, mb: 1 }}
+                        >
+                          {color.charAt(0).toUpperCase() + color.slice(1)}
+                        </Button>
+                      ),
+                    )}
                   </CCol>
                 </CRow>
               ))}
@@ -189,24 +219,19 @@ const Buttons = () => {
                     {state.charAt(0).toUpperCase() + state.slice(1)}
                   </CCol>
                   <CCol xs>
-                    {[
-                      'primary',
-                      'secondary',
-                      'success',
-                      'error',
-                      'warning',
-                      'info',
-                    ].map((color, index) => (
-                      <Button
-                        color={color}
-                        variant="text"
-                        key={index}
-                        disabled={state === 'disabled'}
-                        sx={{ mr: 1, mb: 1 }}
-                      >
-                        {color.charAt(0).toUpperCase() + color.slice(1)}
-                      </Button>
-                    ))}
+                    {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                      (color, index) => (
+                        <Button
+                          color={color}
+                          variant="text"
+                          key={index}
+                          disabled={state === 'disabled'}
+                          sx={{ mr: 1, mb: 1 }}
+                        >
+                          {color.charAt(0).toUpperCase() + color.slice(1)}
+                        </Button>
+                      ),
+                    )}
                   </CCol>
                 </CRow>
               ))}
@@ -250,18 +275,13 @@ const Buttons = () => {
           </CCardHeader>
           <CCardBody>
             <DocsExample href="components/buttons#pill-buttons">
-              {[
-                'primary',
-                'secondary',
-                'success',
-                'error',
-                'warning',
-                'info',
-              ].map((color, index) => (
-                <Button color={color} sx={{ borderRadius: '50px', mr: 1, mb: 1 }} key={index}>
-                  {color.charAt(0).toUpperCase() + color.slice(1)}
-                </Button>
-              ))}
+              {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                (color, index) => (
+                  <Button color={color} sx={{ borderRadius: '50px', mr: 1, mb: 1 }} key={index}>
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Button>
+                ),
+              )}
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -273,18 +293,13 @@ const Buttons = () => {
           </CCardHeader>
           <CCardBody>
             <DocsExample href="components/buttons#square">
-              {[
-                'primary',
-                'secondary',
-                'success',
-                'error',
-                'warning',
-                'info',
-              ].map((color, index) => (
-                <Button color={color} sx={{ borderRadius: 0, mr: 1, mb: 1 }} key={index}>
-                  {color.charAt(0).toUpperCase() + color.slice(1)}
-                </Button>
-              ))}
+              {['primary', 'secondary', 'success', 'error', 'warning', 'info'].map(
+                (color, index) => (
+                  <Button color={color} sx={{ borderRadius: 0, mr: 1, mb: 1 }} key={index}>
+                    {color.charAt(0).toUpperCase() + color.slice(1)}
+                  </Button>
+                ),
+              )}
             </DocsExample>
           </CCardBody>
         </CCard>
@@ -320,10 +335,24 @@ const Buttons = () => {
               to assistive technologies.
             </p>
             <DocsExample href="components/buttons#disabled-state">
-              <Button component="a" href="#" color="primary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
+              <Button
+                component="a"
+                href="#"
+                color="primary"
+                size="large"
+                disabled
+                sx={{ mr: 1, mb: 1 }}
+              >
                 Primary link
               </Button>
-              <Button component="a" href="#" color="secondary" size="large" disabled sx={{ mr: 1, mb: 1 }}>
+              <Button
+                component="a"
+                href="#"
+                color="secondary"
+                size="large"
+                disabled
+                sx={{ mr: 1, mb: 1 }}
+              >
                 Link
               </Button>
             </DocsExample>
@@ -341,8 +370,12 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2">
-                <Button color="primary" fullWidth>Button</Button>
-                <Button color="primary" fullWidth>Button</Button>
+                <Button color="primary" fullWidth>
+                  Button
+                </Button>
+                <Button color="primary" fullWidth>
+                  Button
+                </Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
@@ -353,8 +386,12 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2 d-md-block">
-                <Button color="primary" sx={{ mr: 1, mb: 1 }}>Button</Button>
-                <Button color="primary" sx={{ mr: 1, mb: 1 }}>Button</Button>
+                <Button color="primary" sx={{ mr: 1, mb: 1 }}>
+                  Button
+                </Button>
+                <Button color="primary" sx={{ mr: 1, mb: 1 }}>
+                  Button
+                </Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
@@ -364,8 +401,12 @@ const Buttons = () => {
             </p>
             <DocsExample href="components/buttons#block-buttons">
               <div className="d-grid gap-2 col-6 mx-auto">
-                <Button color="primary" fullWidth>Button</Button>
-                <Button color="primary" fullWidth>Button</Button>
+                <Button color="primary" fullWidth>
+                  Button
+                </Button>
+                <Button color="primary" fullWidth>
+                  Button
+                </Button>
               </div>
             </DocsExample>
             <p className="text-body-secondary small">
