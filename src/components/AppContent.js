@@ -14,7 +14,7 @@ const AppContent = () => {
             return (
               route.element && (
                 <Route
-                  key={idx}
+                  key={route.path || route.name || `route-${idx}`}
                   path={route.path}
                   exact={route.exact}
                   name={route.name}
